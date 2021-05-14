@@ -16,8 +16,12 @@ else ifneq (,$(findstring i686,$(MACHINE)))
 	HOST_PLATFORM = x86
 else ifneq (,$(findstring i386,$(MACHINE)))
 	HOST_PLATFORM = x86
-else ifneq (,$(findstring arm,$(MACHINE)))
+else ifneq (,$(findstring aarch64,$(MACHINE)))
 	HOST_PLATFORM = Arm
+	# allow platform selection in other Makefiles
+	DEFINES += __arm__
+	# avoid loss precision error
+	CFLAGS += -fpermissive
 else
 	DUMMY:=$(error Can't determine host platform)
 endif

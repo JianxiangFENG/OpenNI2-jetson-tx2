@@ -95,6 +95,9 @@ ifneq "$(EXE_NAME)" ""
 	OUTPUT_NAME = $(EXE_NAME)
 	# We want the executables to look for the .so's locally first:
 	LDFLAGS += -Wl,-rpath ./
+	ifneq ("$(OSTYPE)", "DARWIN")
+		LDFLAGS += -lpthread
+	endif
 	OUTPUT_COMMAND = $(CXX) -o $(OUTPUT_FILE) $(OBJ_FILES) $(LDFLAGS)
 endif
 ifneq "$(SLIB_NAME)" ""

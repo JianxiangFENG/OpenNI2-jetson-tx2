@@ -101,7 +101,7 @@ ALL_PROJS_CLEAN = $(foreach proj,$(ALL_PROJS),$(proj)-clean)
 # define a function which creates a target for each proj
 define CREATE_PROJ_TARGET
 $1: 
-	$$(MAKE) -C $1
+	$$(MAKE) -C $1 
 
 $1-clean: 
 	$$(MAKE) -C $1 clean
@@ -145,6 +145,8 @@ Samples/SimpleViewer:       $(OPENNI)
 Samples/MultiDepthViewer:   $(OPENNI)
 Samples/ClosestPointViewer: $(OPENNI) Samples/MWClosestPoint
 Samples/SimpleViewer.java:            Wrappers/java/OpenNI.java
+core_samples: $(CORE_SAMPLES)
+tools: $(ALL_TOOLS)
 
 $(FINAL_DIR):
 	mkdir -p $(FINAL_DIR)
